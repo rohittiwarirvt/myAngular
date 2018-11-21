@@ -1,0 +1,26 @@
+
+
+<div *ngIf="contact">
+  <h2>{{contact.name | uppercase}} Details </h2>
+  <form [formGroup]='contactForm' (ngSubmit)="update()">
+    <label>
+      Title: <input type="text" formControlName="title">
+    </label>
+    <label>
+      Name: <input type="text" formControlName="name">
+    </label>
+    <label>
+      Phone: <input type="text" formControlName="phone">
+    </label>
+    <label>
+      Address: <input type="text" formControlName="address">
+    </label>
+    <button type="submit" [disabled]="!contactForm.valid"> Save </button>
+  </form>
+</div>
+<div *ngIf="!contact">
+  <p> No Contact Fount </p>
+</div>
+
+<button (click)="goBack()"> go back </button>
+<!-- <button (click)="save()"> save </button> -->
