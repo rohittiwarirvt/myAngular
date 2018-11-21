@@ -31,12 +31,21 @@ export class ContactService {
 
   }
 
-  getContact(): void {
-
+  getContact(id: number): Observable<Contact> {
+    const url = `${this.contactsUrl}/${id}`;
+    return this.http.get<Contact>(url)
+    .pipe(
+      tap( _ => this.log(`fetched contact id=${id}`)),
+      catchError(this.handleError<Contact>(`getHero id=${id}`))
+      )
   }
 
-  addContact(): void {
-
+  addContact(contact: Contact | number): Observable<Contact> {
+     return this.http.post(this.contactsUrl, contact, httpOptions)
+     .pipe(
+       tap((contact: Contact) => this.log(`Created Contact with id = ${contact.id}`)),
+       catchError(this.handleError<Contact>('addedContact'))
+       );
   }
 
   deleteContact(contact: Contact | number): Observable<Contact> {
@@ -50,8 +59,13 @@ export class ContactService {
         );
   }
 
-  updateContact() : void {
-
+  updateContact(contact: Contact) : Observable<any> {
+    debugger;
+    return this.http.put<Contact>(this.contactsUrl, contact, httpOptions)
+      .pipe(
+        tap( _ => this.log(`updated the Contact: id = ${contact.id}`)),
+        catchError(this.handleError<any>('updateContact'))
+        );
   }
 
   private handleError<T> ( operation = 'operation', result?: T) {
