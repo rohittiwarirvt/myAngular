@@ -60,11 +60,22 @@ export class ContactService {
   }
 
   updateContact(contact: Contact) : Observable<any> {
-    debugger;
     return this.http.put<Contact>(this.contactsUrl, contact, httpOptions)
       .pipe(
         tap( _ => this.log(`updated the Contact: id = ${contact.id}`)),
         catchError(this.handleError<any>('updateContact'))
+        );
+  }
+
+  searchContacts(term: string): Observable<Contact[]> {
+    if (!term) {
+      return of([]);
+    }
+    const url = `${this.contactsUrl}/?name=${term}`;
+    return this.http.get<Contact[]>(url)
+      .pipe(
+        tap( _ => this.log(`found contacts matching "${term}"`)),
+        catchError(this.handleError<Contact[]>('searchTerms', []))
         );
   }
 

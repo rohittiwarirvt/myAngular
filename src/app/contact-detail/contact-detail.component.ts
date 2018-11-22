@@ -48,7 +48,7 @@ export class ContactDetailComponent implements OnInit {
 
    update() {
     console.log(this.contactForm.value);
-    let tempContact = {};
+    let tempContact: Contact ;
      tempContact = this.contactForm.value;
      tempContact.id = this.contact.id;
      this.contactService.updateContact(tempContact).subscribe(() => this.goBack());

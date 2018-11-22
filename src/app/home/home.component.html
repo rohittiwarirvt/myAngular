@@ -1,0 +1,15 @@
+<h2>WelCome to Contact List Application</h2>
+<nav >
+  <a routerLink="/contacts"> Contacts</a>
+</nav>
+
+<h3 > Recent Contacts</h3>
+
+<ul>
+  <li *ngFor="let contact of contacts">
+    <a routerLink="/contacts/{{contact.id}}"> {{contact.name}}</a>
+  </li>
+</ul>
+
+
+<app-contact-search></app-contact-search>
