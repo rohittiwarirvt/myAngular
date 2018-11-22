@@ -1,0 +1,10 @@
+<h3>Search Contacts </h3>
+
+<input #searchBox (keyup)="search(searchBox.value)"/> Search input
+<ul>
+  <li *ngFor="let contact of contacts$ | async">
+    <a routerLink="/contacts/{{contact.id}}">
+      {{contact.name}}
+    </a>
+  </li>
+</ul>

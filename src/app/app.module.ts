@@ -9,12 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contacts.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { AppHomeComponent } from './home/home.component';
+import { ContactSearchComponent } from './contact-search/contact-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactComponent,
-    ContactDetailComponent
+    ContactDetailComponent,
+    AppHomeComponent,
+    ContactSearchComponent
   ],
   imports: [
     BrowserModule,
